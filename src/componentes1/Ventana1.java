@@ -4,19 +4,56 @@
  */
 package componentes1;
 
+import javax.swing.*;
+import java.awt.*;
+import static java.awt.SystemColor.menu;
+
 /**
  *
  * @author pauhd
  */
 public class Ventana1 extends javax.swing.JFrame {
 
+    private MenuPanel menuPanel;
+    private GamePanel gamePanel;
+
     /**
      * Creates new form Ventana1
      */
     public Ventana1() {
         initComponents();
-    }
+        setTitle("Fruta va!!");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800,600);
+        setResizable(false); // opcional, para no deformar el juego
+        setLocationRelativeTo(null);
+        setLayout(null);
+        
+        menuPanel = new MenuPanel(this);
+        gamePanel = new GamePanel(this);
 
+        menuPanel.setBounds(0,0,800,600);
+        gamePanel.setBounds(0,0,800,600);
+
+        add(menuPanel);
+        add(gamePanel);
+
+        showMenu();
+    }
+    
+    public void showMenu() {
+        menuPanel.setVisible(true);
+        gamePanel.setVisible(false);
+    }
+    
+    public void showGame() {
+        gamePanel.startGame();
+        menuPanel.setVisible(false);
+        gamePanel.setVisible(true);
+        gamePanel.requestFocusInWindow();
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,11 +69,11 @@ public class Ventana1 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 404, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 308, Short.MAX_VALUE)
         );
 
         pack();
